@@ -1,49 +1,58 @@
 <template>
-  <div id="app">
+<div id="app">
     <template v-if="this.$store.getters.isSignIn">
         <App-Header></App-Header>
         <b-container>
-          <transition name="slide-fade" mode="out-in">
-            <router-view></router-view>
-          </transition>
+            <div id="style-down-cont-pad">
+                <transition name="slide-fade" mode="out-in">
+                    <router-view></router-view>
+                </transition>
+            </div>
         </b-container>
-</template>
-<template v-else>
-  <Sign-In></Sign-In>
-</template>
+    </template>
+    <template v-else>
+        <Sign-In></Sign-In>
+    </template>
 
-  </div>
+</div>
 </template>
 
 <script>
-  import AppHeader from './components/content/Header.vue';
-  import SignIn from './components/content/page/SignIn.vue';
-  export default {
+import AppHeader from './components/content/Header.vue';
+import SignIn from './components/content/page/SignIn.vue';
+export default {
     components: {
-      AppHeader,
-      SignIn
+        AppHeader,
+        SignIn
     },
     name: "app",
     data() {
-      return {
-        msg: "Welcome to Your Vue.js Appa"
-      };
+        return {
+            msg: "Welcome to Your Vue.js Appa"
+        };
     }
-  };
+};
 </script>
 
 <style>
-  .slide-fade-enter-active {
+#style-down-cont-pad {
+    padding: 20px
+}
+
+.slide-fade-enter-active {
     transition: all .1s ease;
-  }
-  .slide-fade-leave-active {
+}
+
+.slide-fade-leave-active {
     transition: all .0.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter,
-  .slide-fade-leave-to
-  /* .slide-fade-leave-active до версии 2.1.8 */
-  {
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+
+/* .slide-fade-leave-active до версии 2.1.8 */
+    {
     transform: translateX(10px);
     opacity: 0;
-  }
+}
 </style>

@@ -5,17 +5,21 @@
             <b-row>
                 <b-col></b-col>
                 <b-col>
+                    <b-alert show variant="danger" v-if="errorMessage">{{errorMessage}}</b-alert>
                     <div>
-                        <b-form @submit.prevent="SignIn" v-if="show">
+                        <b-form v-on:submit.prevent="SignIn">
                             <b-form-group id="exampleInputGroup1" label="Почта ЕАЕ:" label-for="exampleInput1">
                                 <b-form-input id="exampleInput1" type="email" v-model="user.email" required placeholder="@eaeconsult.ru">
                                 </b-form-input>
                             </b-form-group>
-                            <b-form-group id="exampleInputGroup2" label="Пароль:" label-for="exampleInput2">
+                            <b-form-group id="exampleInputGroup2" label="Пароль:" label-for="exampleInput2" description="Пароль не совпадает с текущим в домене ensi-group, а выдается администратором">
                                 <b-form-input id="exampleInput2" type="password" v-model="user.password" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-button type="submit" variant="primary">Войти</b-button>
+                            <br>
+                            
+                            
                         </b-form>
                     </div>
                 </b-col>
@@ -38,7 +42,7 @@
                     email: '',
                     password: ''
                 },
-                show: true
+                errorMessage: ""
             }
         },
         methods: {
@@ -53,15 +57,8 @@
                             }
                         });
                     })
-                    .catch(function(error) {
-                        // Handle Errors here.
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        if (errorCode === 'auth/wrong-password') {
-                            alert('Wrong password.');
-                        } else {
-                            alert(errorMessage);
-                        }
+                    .catch(error => {
+                        this.errorMessage = error.message;
                         console.log(error);
                     })
             },
