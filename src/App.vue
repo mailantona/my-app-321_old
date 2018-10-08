@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <App-Header></App-Header>
-    <b-container>
-      <transition name="slide-fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
-    </b-container>
+    <template v-if="this.$store.getters.isSignIn">
+        <App-Header></App-Header>
+        <b-container>
+          <transition name="slide-fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </b-container>
+</template>
+<template v-else>
+  <Sign-In></Sign-In>
+</template>
+
   </div>
 </template>
 
 <script>
   import AppHeader from './components/content/Header.vue';
+  import SignIn from './components/content/page/SignIn.vue';
   export default {
     components: {
-      AppHeader
+      AppHeader,
+      SignIn
     },
     name: "app",
     data() {

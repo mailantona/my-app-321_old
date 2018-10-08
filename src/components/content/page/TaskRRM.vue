@@ -1,5 +1,5 @@
 <template>
-
+<div><p>{{qwe}}</p></div>
 </template>
 
 <script>

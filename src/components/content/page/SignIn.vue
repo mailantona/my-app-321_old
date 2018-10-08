@@ -16,7 +16,6 @@
                                 </b-form-input>
                             </b-form-group>
                             <b-button type="submit" variant="primary">Войти</b-button>
-                            {{this.$store.getters.isSignIn}} {{this.$store.getters.userLoginSett.email}} {{this.$store.getters.userLoginSett.uid}}
                         </b-form>
                     </div>
                 </b-col>

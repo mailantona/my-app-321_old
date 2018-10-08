@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Mainpage from "./components/content/page/Main.vue";
-import SignIn from "./components/content/page/SignIn.vue";
+import TaskRRM from "./components/content/page/TaskRRM.vue";
 import E404 from "./components/content/page/E404.vue";
 
 const routes = [
@@ -14,11 +14,10 @@ const routes = [
         component: Mainpage
     },
     {
-        name: 'SignIn',
-        path: "/SignIn",
-        component: SignIn
-    }
-    ,
+        name: 'TaskRRM',
+        path: "/TaskRRM",
+        component: TaskRRM
+    },
     {
       path: "*",
       component: E404
