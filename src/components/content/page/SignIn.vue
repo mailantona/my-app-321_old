@@ -26,6 +26,7 @@
 </template>
 
 <script>
+    import firebase from 'firebase'
     import {
         mapGetters,
         mapMutations
@@ -44,9 +45,6 @@
             SignIn() {
                 firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
                     .then(response => {
-                        console.log(response);
-                        console.log(response.user.email);
-                        console.log(response.user.uid);
                         this.$store.commit('isSignInSet');
                         this.$store.commit('userLoginSettSet', {
                             userLoginSettthisNew: {
@@ -54,6 +52,17 @@
                                 uid: response.user.uid
                             }
                         });
+                    })
+                    .catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        if (errorCode === 'auth/wrong-password') {
+                            alert('Wrong password.');
+                        } else {
+                            alert(errorMessage);
+                        }
+                        console.log(error);
                     })
             },
         }
